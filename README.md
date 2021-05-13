@@ -11,3 +11,5 @@ Conteúdo:
 - Criteria API
 - Outros tópicos (herança, chave composta, etc.)
 
+### Aula 01.02 - Projeto inicial do treinamento
+- [Projeto inicial](./projeto_inicial)
