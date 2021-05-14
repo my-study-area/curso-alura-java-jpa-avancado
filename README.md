@@ -19,3 +19,6 @@ Conteúdo:
 
 ### Aula 01.04 - Relacionamentos many-to-many
 ![Tabela itens de pedidos](./tabela_itens_pedido.png)
+
+### Aula 01.05 - Relacionamentos bidirecionais
+- Ao criar um relacionamento muitos para muitos não podemos esquecer de anotar com `@OneToMany(mappedBy = "pedido")`, no lado  inverso, para impedir a criação de uma tabela desnecessária.
