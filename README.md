@@ -22,3 +22,7 @@ Conteúdo:
 
 ### Aula 01.05 - Relacionamentos bidirecionais
 - Ao criar um relacionamento muitos para muitos não podemos esquecer de anotar com `@OneToMany(mappedBy = "pedido")`, no lado  inverso, para impedir a criação de uma tabela desnecessária.
+
+### Aula 01.06 - Parâmetro mappedBy
+Por qual motivo o parâmetro mappedBy deve ser utilizado na anotação `@OneToMany`?  
+`R:`Para indicar que se trata de um relacionamento bidirecional. Sem esse parâmetro a JPA considera se tratar de outro relacionamento, assumindo que existe outra tabela de join
