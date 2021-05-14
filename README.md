@@ -33,3 +33,6 @@ Por qual motivo o parâmetro mappedBy deve ser utilizado na anotação `@OneToMa
 @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 ```
 
+### Aula 01.08 - Parâmetro cascade
+Qual a utilidade do parâmetro cascade?  
+`R:` Propagar as operações realizadas de uma entidade em seu relacionamento. O cascade cria um efeito cascata nas operações realizadas em uma entidade.
