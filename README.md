@@ -13,3 +13,6 @@ Conteúdo:
 
 ### Aula 01.02 - Projeto inicial do treinamento
 - [Projeto inicial](./projeto_inicial)
+
+### Aula 01.03 - Mapeando novas entidades
+![Tabela de pedidos e cliente](./tabela_pedidos_cliente.png)
