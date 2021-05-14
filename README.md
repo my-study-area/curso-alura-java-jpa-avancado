@@ -16,3 +16,6 @@ Conteúdo:
 
 ### Aula 01.03 - Mapeando novas entidades
 ![Tabela de pedidos e cliente](./tabela_pedidos_cliente.png)
+
+### Aula 01.04 - Relacionamentos many-to-many
+![Tabela itens de pedidos](./tabela_itens_pedido.png)
