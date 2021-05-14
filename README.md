@@ -26,3 +26,10 @@ Conteúdo:
 ### Aula 01.06 - Parâmetro mappedBy
 Por qual motivo o parâmetro mappedBy deve ser utilizado na anotação `@OneToMany`?  
 `R:`Para indicar que se trata de um relacionamento bidirecional. Sem esse parâmetro a JPA considera se tratar de outro relacionamento, assumindo que existe outra tabela de join
+
+### Aula 01.07 - Teste do relacionamento bidirecional
+- Utilizamos a propriedade `cascade = CascadeType.ALL` num relacionamento para salvarmos em cascata, por exemplo, ao salvar no banco de dados o `Pedido` já é salvo automaticamente o `ItemDoPedido`. Ex:
+```java
+@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+```
+
