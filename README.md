@@ -36,3 +36,11 @@ Por qual motivo o parâmetro mappedBy deve ser utilizado na anotação `@OneToMa
 ### Aula 01.08 - Parâmetro cascade
 Qual a utilidade do parâmetro cascade?  
 `R:` Propagar as operações realizadas de uma entidade em seu relacionamento. O cascade cria um efeito cascata nas operações realizadas em uma entidade.
+
+### Aula 01.09 - Faça como eu fiz
+
+### Aula 01.10 - O que aprendemos?
+- A mapear novas entidades na aplicação conforme a modelagem do banco de dados;
+- A mapear um relacionamento com cardinalidade muitos-para-muitos;
+- A mapear um relacionamento bidirecional;
+- Como persistir entidades que possuam relacionamentos bidirecionais.
