@@ -44,3 +44,16 @@ Qual a utilidade do parâmetro cascade?
 - A mapear um relacionamento com cardinalidade muitos-para-muitos;
 - A mapear um relacionamento bidirecional;
 - Como persistir entidades que possuam relacionamentos bidirecionais.
+
+## Módulo 02 - Consultas avançadas
+
+### Aula 02.01 - Projeto da aula anterior
+
+### Aula 02.02 - Consultas com funções de agregação
+- Exemplo de consulta utilizando a função `SUM`:
+```java
+String jpql = "SELECT SUM(p.valorTotal) FROM Pedido p";
+BigDecimal total = this.em.createQuery(jpql, BigDecimal.class)
+    .getSingleResult();
+System.out.println(total);
+```
