@@ -57,3 +57,21 @@ BigDecimal total = this.em.createQuery(jpql, BigDecimal.class)
     .getSingleResult();
 System.out.println(total);
 ```
+
+### Aula 02.03 - Consultas para relatórios
+![Imagem com exemplo de um relatório de vendas](./relatorio_vendas.png)
+- Exemplo de consulta, gerando relatório de pedidos, utilizando um Array de Objetos:
+```java
+String jpql = "SELECT "
+        + "produto.nome, "
+        + "SUM(item.quantidade), "
+        + "MAX(pedido.data) "
+      + "FROM Pedido pedido "
+      + "JOIN pedido.itens item "
+      + "JOIN item.produto produto "
+      + "GROUP BY produto.nome "
+      + "ORDER BY item.quantidade DESC";
+ Object[] relatorio = this.em
+    .createQuery(jpql, Object[].class)
+    .getResultList();
+```
