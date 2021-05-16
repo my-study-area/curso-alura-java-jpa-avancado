@@ -119,3 +119,28 @@ public List<RelatorioDeVendasVo> relatorioPedidos() {
 }
 ```
 - No JPQL devemos utilizar o caminho completo do pacote com o nome da classe. Ex: `new br.com.alura.loja.vo.RelatorioDeVendasVo(param1, param2)`
+
+### Aula 02.05 - Gerando relatórios
+Considere a seguinte consulta JPQL:
+```java
+select 
+    new br.com.alura.loja.dto.VendasPorDia(
+        produto.nome,
+        sum(pedido.valorTotal),
+        pedido.data) 
+from Pedido pedido 
+join pedido.itens itens join itens.produto produto 
+group by produto.nome, pedido.data
+```
+E a seguinte classe DTO:
+```java
+public class VendasPorDia {
+    private String nomeDoProduto;
+    private BigDecimal valorVendido;
+    private LocalDate dataDasVendas;
+
+    //getters e setter de todos os atributos
+}
+```
+Por qual motivo a consulta anterior não vai funcionar corretamente?  
+`R:` A classe DTO deve conter um construtor compatível com a consulta JPQL. A JPA cria instâncias da classe DTO via construtor que recebe parâmetros, conforme a consulta JPQL.
