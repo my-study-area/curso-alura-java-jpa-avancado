@@ -75,3 +75,47 @@ String jpql = "SELECT "
     .createQuery(jpql, Object[].class)
     .getResultList();
 ```
+
+### Aula 02.04 - Consultas com select new
+- Exemplo de consulta, gerando relatório de pedidos, utilizando uma classe para visualização dos dados:
+```java
+// Exemplo de classe com os dados para visualização
+public class RelatorioDeVendasVo {
+
+	private String nomeProduto;
+	private Long quantidadeVendida;
+	private LocalDate dataUltimaVenda;
+
+	public RelatorioDeVendasVo(String nomeProduto, Long quantidadeVendida,
+          LocalDate dataUltimaVenda) {
+		this.nomeProduto = nomeProduto;
+		this.quantidadeVendida = quantidadeVendida;
+		this.dataUltimaVenda = dataUltimaVenda;
+	}
+
+  //getters
+
+	@Override
+	public String toString() {
+		return "RelatorioDeVendasVo [nomeProduto=" + nomeProduto + ", quantidadeVendida=" + quantidadeVendida
+				+ ", dataUltimaVenda=" + dataUltimaVenda + "]";
+	}
+}
+
+//Exemplo de método
+public List<RelatorioDeVendasVo> relatorioPedidos() {
+  String jpql = "SELECT "
+          + "new br.com.alura.loja.vo.RelatorioDeVendasVo("
+            + "produto.nome, "
+            + "SUM(item.quantidade), "
+            + "MAX(pedido.data) "
+          + ")"
+        + "FROM Pedido pedido "
+        + "JOIN pedido.itens item "
+        + "JOIN item.produto produto "
+        + "GROUP BY produto.nome "
+        + "ORDER BY item.quantidade DESC";
+  return this.em.createQuery(jpql, RelatorioDeVendasVo.class).getResultList();
+}
+```
+- No JPQL devemos utilizar o caminho completo do pacote com o nome da classe. Ex: `new br.com.alura.loja.vo.RelatorioDeVendasVo(param1, param2)`
