@@ -74,7 +74,7 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 	
-	public void adicionaItem(ItemPedido item) {
+	public void adicionarItem(ItemPedido item) {
 		item.setPedido(this);
 		this.itens.add(item);
 		this.valorTotal = this.valorTotal.add(item.getValor());

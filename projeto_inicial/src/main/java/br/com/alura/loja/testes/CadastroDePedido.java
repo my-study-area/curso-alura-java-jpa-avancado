@@ -42,9 +42,9 @@ public class CadastroDePedido {
 		ItemPedido itemPedido2 = new ItemPedido(1, pedido2, produto2);
 		ItemPedido itemPedido3 = new ItemPedido(2, pedido3, produto3);
 		
-		pedido.adicionaItem(itemPedido);
-		pedido2.adicionaItem(itemPedido2);
-		pedido3.adicionaItem(itemPedido3);
+		pedido.adicionarItem(itemPedido);
+		pedido2.adicionarItem(itemPedido2);
+		pedido3.adicionarItem(itemPedido3);
 		
 		em.getTransaction().begin();
 		pedidoDao.cadastrar(pedido);
