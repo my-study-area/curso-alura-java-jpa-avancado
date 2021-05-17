@@ -165,3 +165,7 @@ public List<Produto> buscarPorNomeDaCategoria(String nome) {
 }
 ```
 - Para identificarmos a origem da named querie é comum nomearmos com o nome da classe, ponto e o nome da querie (`NomeDaClasse.nomeDaQuerie`), como no exemplo acima.
+
+### Aula 02.07 - Vantagens das named queries
+Qual das seguintes alternativas é uma das vantagens de se utilizar named queries?  
+`R:` Deixar as consultas de uma entidade mais próximas da classe dela. As named queries são declaradas na classe da entidade.
