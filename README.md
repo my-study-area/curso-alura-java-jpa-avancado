@@ -169,3 +169,11 @@ public List<Produto> buscarPorNomeDaCategoria(String nome) {
 ### Aula 02.07 - Vantagens das named queries
 Qual das seguintes alternativas é uma das vantagens de se utilizar named queries?  
 `R:` Deixar as consultas de uma entidade mais próximas da classe dela. As named queries são declaradas na classe da entidade.
+
+### Aula 02.08 - Faça como eu fiz
+
+### Aula 02.09 - O que aprendemos?
+- A realizar consultas utilizando funções de agregação, tais como `MIN`, `MAX`, `AVG` E `SUM`;
+- Como escrever consultas de relatórios utilizando `JPQL`;
+- Como utilizar o recurso select new em consultas `JPQL`;
+- A realizar consultas utilizando named queries.
