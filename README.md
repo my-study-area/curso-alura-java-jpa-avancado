@@ -144,3 +144,24 @@ public class VendasPorDia {
 ```
 Por qual motivo a consulta anterior não vai funcionar corretamente?  
 `R:` A classe DTO deve conter um construtor compatível com a consulta JPQL. A JPA cria instâncias da classe DTO via construtor que recebe parâmetros, conforme a consulta JPQL.
+
+### Aula 02.06 - Utilizando Named Queries
+- `Named Querie` é uma outra forma de realizarmos consultas usando JPQL, mas são criadas nas entidades de domínio da consulta. Por exemplo, na classe Produto:
+- Utilizamos a anotação `@NamedQuery`
+```java
+@Entity
+@Table(name = "produtos")
+@NamedQuery(name = "Produto.produtosPorNomeDaCategoria", query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
+public class Produto {
+    // restante do código
+}
+```
+- Para utilizar uma Named Querie devemos utilizar o método `createNamedQuery` conforme exemplo abaixo:
+```java
+public List<Produto> buscarPorNomeDaCategoria(String nome) {
+  return em.createNamedQuery("Produto.produtosPorNomeDaCategoria", Produto.class)
+      .setParameter("nome", nome)
+      .getResultList();
+}
+```
+- Para identificarmos a origem da named querie é comum nomearmos com o nome da classe, ponto e o nome da querie (`NomeDaClasse.nomeDaQuerie`), como no exemplo acima.
