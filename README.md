@@ -177,3 +177,30 @@ Qual das seguintes alternativas é uma das vantagens de se utilizar named querie
 - Como escrever consultas de relatórios utilizando `JPQL`;
 - Como utilizar o recurso select new em consultas `JPQL`;
 - A realizar consultas utilizando named queries.
+
+## Módulo 03 - Performance de consultas
+
+### Aula 03.01 - Projeto da aula anterior
+
+### Aula 03.02 - Entendendo Lazy e Eager
+- Relacionamentos `@ManyToOne` e `@OneToOne` carregam os dados de outras entidades mesmo que não estejam sendo utilizados. Este comportamento é chamada de `EAGER` e é o padrão no Hibernate. Veja o log abaixo
+```sql
+select
+    pedido0_.id as id1_3_0_,
+    pedido0_.cliente_id as cliente_4_3_0_,
+    pedido0_.data as data2_3_0_,
+    pedido0_.valor_total as valor_to3_3_0_,
+    cliente1_.id as id1_1_1_,
+    cliente1_.cpf as cpf2_1_1_,
+    cliente1_.nome as nome3_1_1_ 
+from
+    pedidos pedido0_ 
+left outer join
+    clientes cliente1_ 
+        on pedido0_.cliente_id=cliente1_.id 
+where
+    pedido0_.id=?
+```
+- Para tornar um relacionamento `EAGER` em `LAZY` utilizamos a seguinte anotação: `@ManyToOne(fetch = FetchType.LAZY)`
+
+- No relacionamento `@ManyToMany` e `@OneToMany` o carregamento dos dados é `LAZY`, por padrão, ou seja, somente são carregados os dados quando são utilizados.
