@@ -248,3 +248,65 @@ public static void main(String[] args) {
     System.out.println(pedido.getCliente().getNome());
 }
  ```
+
+### Aula 03.04 - Consultas com Lazy e Eager
+Considere as seguintes entidades JPA:
+
+```java
+@Entity
+@Table(name = “clientes”)
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Endereco endereco;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = “cliente”)
+    private List<Telefone> telefones = new ArrayList<>();
+
+}
+```
+
+```java
+@Entity
+@Table(name = “enderecos”)
+public class Endereco {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String logradouro;
+    private String cep;
+    private String cidade;
+    private String uf;
+    private String bairro;
+    private String numero;
+
+}
+```
+
+```java
+@Entity
+@Table(name = “telefones”)
+public class Telefone {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String ddd;
+    private String numero;
+    @ManyToOne
+    private Cliente cliente;
+
+}
+```
+
+E o seguinte trecho de código:
+```java
+Cliente cliente = em.find(Cliente.class, 1l);
+System.out.println(cliente.getNome());
+```
+Que tipo de consulta no banco de dados o trecho de código anterior vai gerar?  
+`R:` Um select na tabela de clientes fazendo join apenas com a tabela de enderecos. O relacionamento com a entidade Endereco é do tipo eager, portanto a consulta vai gerar um join com a tabela de enderecos.
