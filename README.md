@@ -310,3 +310,7 @@ System.out.println(cliente.getNome());
 ```
 Que tipo de consulta no banco de dados o trecho de código anterior vai gerar?  
 `R:` Um select na tabela de clientes fazendo join apenas com a tabela de enderecos. O relacionamento com a entidade Endereco é do tipo eager, portanto a consulta vai gerar um join com a tabela de enderecos.
+
+### Aula 03.05 - Vantagens do join fetch
+Por qual motivo é interessante utilizar o recurso join fetch em uma consulta JPQL?  
+`R:` Para evitar carregar relacionamentos em todas as consultas da aplicação. O join fetch permite escolher quais relacionamentos serão carregados em determinada consulta, ao invés de sempre os carregar
