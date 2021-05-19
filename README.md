@@ -314,3 +314,11 @@ Que tipo de consulta no banco de dados o trecho de código anterior vai gerar?
 ### Aula 03.05 - Vantagens do join fetch
 Por qual motivo é interessante utilizar o recurso join fetch em uma consulta JPQL?  
 `R:` Para evitar carregar relacionamentos em todas as consultas da aplicação. O join fetch permite escolher quais relacionamentos serão carregados em determinada consulta, ao invés de sempre os carregar
+
+### Aula 03.06 - Faça como eu fiz
+
+### Aula 03.07 - O que aprendemos?
+- Como funcionam as estratégias `EAGER` e `LAZY`, em consultas de entidades que possuem relacionamentos;
+- Por que a JPA pode lançar a exception `LazyInitializationException` em determinadas situações;
+- As boas práticas no carregamento de entidades com relacionamentos;
+- Como realizar consultas planejadas com o recurso `join fetch`.
