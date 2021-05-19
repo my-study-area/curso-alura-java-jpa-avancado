@@ -204,3 +204,47 @@ where
 - Para tornar um relacionamento `EAGER` em `LAZY` utilizamos a seguinte anotação: `@ManyToOne(fetch = FetchType.LAZY)`
 
 - No relacionamento `@ManyToMany` e `@OneToMany` o carregamento dos dados é `LAZY`, por padrão, ou seja, somente são carregados os dados quando são utilizados.
+
+### Aula 03.03 - Consultas com Join Fetch
+ - A exception `org.hibernate.LazyInitializationException` é lançada quando tentamos acessar um dado que pertence a um relacionamento `LAZY` que utilizado após fechar a conexão do EntityManager. Ex:
+ ```java
+ // Exemplo que lança org.hibernate.LazyInitializationException
+public static void main(String[] args) {
+    popularBancoDeDados();
+    EntityManager em = JPAUtil.getEntityManager();
+    
+    Pedido pedido = em.find(Pedido.class, 1l);
+    System.out.println(pedido.getData());
+    em.close();
+    System.out.println(pedido.getCliente().getNome());
+}
+ ```
+ - A solução quanto a exception `LazyInitializationException` é a utilização de query planejada, ou seja, na consulta já trazer a Entidade com o seu relacionamento. Ex:
+ ```java
+public class PedidoDao {
+
+    private EntityManager em;
+
+    // outros métodos
+
+    public Pedido buscarPedidoComCliente(Long id) {
+      String jpql = "SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id";
+      return this.em.createQuery(jpql, Pedido.class)
+          .setParameter("id", id)
+          .getSingleResult();
+    }
+}
+
+//utilização
+public static void main(String[] args) {
+    popularBancoDeDados();
+    EntityManager em = JPAUtil.getEntityManager();
+    PedidoDao pedidoDao = new PedidoDao(em);
+
+    Pedido pedido = pedidoDao.buscarPedidoComCliente(1l);
+    System.out.println(pedido.getData());
+    System.out.println(pedido.getItens().size());
+    em.close();
+    System.out.println(pedido.getCliente().getNome());
+}
+ ```
