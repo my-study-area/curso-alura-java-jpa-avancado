@@ -1,6 +1,7 @@
 package br.com.alura.loja.testes;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,6 +27,12 @@ public class CadastroDeProduto {
 	
 		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
 		System.out.println("Preco do Produto: " +precoDoProduto);
+		
+		List<Produto> buscaPorParametro = produtoDao.buscarPorParametro("Xiaomi Redmi", BigDecimal.valueOf(800l), LocalDate.of(2021, 05, 20));
+		buscaPorParametro.forEach(prod -> {
+			System.out.println(prod.getNome());
+			System.out.println(prod.getDataCadastro());
+		});
 	}
 
 	private static void cadastrarProduto() {

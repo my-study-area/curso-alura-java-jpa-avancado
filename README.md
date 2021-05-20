@@ -322,3 +322,43 @@ Por qual motivo é interessante utilizar o recurso join fetch em uma consulta JP
 - Por que a JPA pode lançar a exception `LazyInitializationException` em determinadas situações;
 - As boas práticas no carregamento de entidades com relacionamentos;
 - Como realizar consultas planejadas com o recurso `join fetch`.
+
+## Módulo 04 - Criteria API
+
+### Aula 04.01 - Projeto da aula anterior
+
+### Aula 04.02 - Consultas com parâmetros dinâmicos
+Exemplo de consulta dinâmica usando condicionais:
+```java
+public List<Produto> buscarPorParametro(String nome, BigDecimal preco, LocalDate dataCadastro) {
+  String jpql = "SELECT p FROM Produto p WHERE 1 = 1 ";
+  
+  if (nome != null && !nome.trim().isEmpty()) {
+    jpql += "AND nome = :nome ";
+  }
+  
+  if (preco != null) {
+    jpql += "AND preco = :preco ";
+  }
+  
+  if (dataCadastro != null) {
+    jpql += "AND dataCadastro = :dataCadastro";
+  }
+  
+  TypedQuery<Produto> query = this.em.createQuery(jpql, Produto.class);
+  
+  if (nome != null && !nome.trim().isEmpty()) {
+    query.setParameter("nome", nome);
+  }
+
+  if (preco != null) {
+    query.setParameter("preco", preco);
+  }
+  
+  if (dataCadastro != null) {
+    query.setParameter("dataCadastro", dataCadastro);
+  }
+  
+  return query.getResultList();
+}
+```
