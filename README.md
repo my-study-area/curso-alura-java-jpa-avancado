@@ -362,3 +362,27 @@ public List<Produto> buscarPorParametro(String nome, BigDecimal preco, LocalDate
   return query.getResultList();
 }
 ```
+
+### Aula 04.03 - Consulta dinâmica
+Analise o seguinte método:
+```java
+public List<Cliente> buscarClientes(String nome, LocalDate dataNascimento) {
+    String jpql = "SELECT c FROM Cliente c WHERE ";
+    if (nome != null && !nome.trim().isEmpty()) {
+        jpql += "AND c.nome = :nome ";
+    }
+    if (dataNascimento != null) {
+        jpql += " AND c.dataNascimento = :dataNascimento ";
+    }
+    TypedQuery<Cliente> query = em.createQuery(jpql, Cliente.class);
+    if (nome != null && !nome.trim().isEmpty()) {
+        query.setParameter("nome", nome);
+    }
+    if (dataNascimento != null) {
+        query.setParameter("dataNascimento", dataNascimento);
+    }
+    return query.getResultList();
+}
+```
+Qual o resultado esperado ao chamar tal método?  
+`R:` Uma exception será lançada, independente dos parâmetros informados. A querie contém um erro na cláusula where
