@@ -433,3 +433,56 @@ Qual das seguintes opções é uma das desvantagens da Criteria API?
 - Como realizar consultas JPQL com parâmetros opcionais;
 - Como funciona a Criteria API da JPA;
 - Como realizar uma consulta com parâmetros opcionais via Criteria API.
+
+## Módulo 05 - Outros tópicos
+
+### Aula 05.01 - Projeto da aula anterior
+
+### Aula 05.02 - Simplificando entidades com Embeddable
+- `@Embeddable`: diz ao JPA que essa classe é embutível, ou seja, os atributos podem ser embutidos em outra classe.
+- `@Embedded`: diz ao JPA que essa propriedade possui dados que deverão ser embutidos na entidade.
+Exemplo:
+```java
+@Embeddable
+public class DadosPessoais {
+
+	private String nome;
+	private String cpf;
+
+	public DadosPessoais() {
+	}
+
+	public DadosPessoais(String nome, String cpf) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+}
+```
+```java
+@Entity
+@Table(name = "clientes")
+public class Cliente {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Embedded
+	private DadosPessoais dadosPessoais;
+
+	public Cliente(String nome, String cpf) {
+		this.dadosPessoais = new DadosPessoais(nome, cpf);
+	}
+
+}
+```
