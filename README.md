@@ -426,3 +426,10 @@ public List<Produto> buscarPorParametrosComCriteria(String nome, BigDecimal prec
 ### Aula 04.05 - Desvantagens da Criteria API
 Qual das seguintes opções é uma das desvantagens da Criteria API?  
 `R:` Código mais complexo de entender e manter. A API de Criteria torna o código mais difícil de entender
+
+### Aula 04.06 - Faça como eu fiz
+
+### Aula 04.07 - O que aprendemos?
+- Como realizar consultas JPQL com parâmetros opcionais;
+- Como funciona a Criteria API da JPA;
+- Como realizar uma consulta com parâmetros opcionais via Criteria API.
