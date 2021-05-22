@@ -386,3 +386,39 @@ public List<Cliente> buscarClientes(String nome, LocalDate dataNascimento) {
 ```
 Qual o resultado esperado ao chamar tal método?  
 `R:` Uma exception será lançada, independente dos parâmetros informados. A querie contém um erro na cláusula where
+
+### Aula 04.04 - Consultas com Criteria API
+- `CriteriaBuilder builder = em.getCriteriaBuilder();`: cria o builder de criteria
+- `CriteriaQuery<Produto> query = builder.createQuery(Produto.class);`: cria uma consulta do tipo Produto.
+- `Root<Produto> from = query.from(Produto.class);`: seleciona o `FROM` da consulta, onde Produto.class é uma Entidade.
+- `Predicate filtros = builder.and();`: cria cláusulas do WHERE para aplicar na consulta.
+- `filtros = builder.and(filtros, builder.equal(from.get("nome"), nome));`: adiciona um AND na cláusula WHERE.
+- `query.where(filtros);`: adicoina as cláusulas no WHERE.
+- `return this.em.createQuery(query).getResultList();`: cria uma consulta utilizando a criteria e retorna uma lista de Produto.
+```java
+public List<Produto> buscarPorParametrosComCriteria(String nome, BigDecimal preco, LocalDate dataCadastro) {
+  
+  CriteriaBuilder builder = em.getCriteriaBuilder();
+  CriteriaQuery<Produto> query = builder.createQuery(Produto.class);
+  Root<Produto> from = query.from(Produto.class);
+  
+  Predicate filtros = builder.and();
+  
+  
+  if (nome != null && !nome.trim().isEmpty()) {
+    filtros = builder.and(filtros, builder.equal(from.get("nome"), nome));
+  }
+  
+  if (preco != null) {
+    filtros = builder.and(filtros, builder.equal(from.get("preco"), preco));
+  }
+  
+  if (dataCadastro != null) {
+    filtros = builder.and(filtros, builder.equal(from.get("dataCadastro"), dataCadastro));
+  }
+  
+  query.where(filtros);
+  return this.em.createQuery(query).getResultList();
+  
+}
+```

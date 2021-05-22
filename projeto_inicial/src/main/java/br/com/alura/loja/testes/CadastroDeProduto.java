@@ -28,8 +28,14 @@ public class CadastroDeProduto {
 		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
 		System.out.println("Preco do Produto: " +precoDoProduto);
 		
-		List<Produto> buscaPorParametro = produtoDao.buscarPorParametro("Xiaomi Redmi", BigDecimal.valueOf(800l), LocalDate.of(2021, 05, 20));
+		List<Produto> buscaPorParametro = produtoDao.buscarPorParametro("Xiaomi Redmi", BigDecimal.valueOf(800l), LocalDate.now());
 		buscaPorParametro.forEach(prod -> {
+			System.out.println(prod.getNome());
+			System.out.println(prod.getDataCadastro());
+		});
+		
+		List<Produto> buscarPorParametrosComCriteria = produtoDao.buscarPorParametrosComCriteria("Xiaomi Redmi", BigDecimal.valueOf(800l), LocalDate.now());
+		buscarPorParametrosComCriteria.forEach(prod -> {
 			System.out.println(prod.getNome());
 			System.out.println(prod.getDataCadastro());
 		});
