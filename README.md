@@ -581,3 +581,41 @@ create table produtos (
     primary key (id)
 )
 ```
+### Aula 05.04 - Herança entre entidades
+Analise as seguintes entidades:
+
+```java
+@Entity
+public class Pessoa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
+    private String email;
+
+}
+
+```
+```java
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class PessoaFisica extends Pessoa {
+
+    private String cpf;
+    private LocalDate dataNascimento;
+
+}
+```
+```java
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class PessoaJuridica extends Pessoa {
+
+    private String cnpj;
+    private String inscricaoEstadual
+
+}
+```
+Por qual motivo o mapeamento está incorreto?  
+`R:` A anotação de herança está na classe errada. A anotação `@Inheritance` deveria ser adicionada apenas na classe base.
