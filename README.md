@@ -674,3 +674,29 @@ public class Categoria {
 
 }
 ```
+
+### Aula 05.06 - Utilizando chave composta
+Considere o seguinte mapeamento:
+
+```java
+@Entity
+public class Usuario {
+
+    @Embedded
+    private UsuarioId id;
+}
+```
+
+```java
+@Embeddable
+public class UsuarioId implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private String nome;
+    private String cpf;
+
+}
+```
+Por qual motivo o mapeamento anterior está incorreto?  
+`R:` O atributo id foi mapeado de maneira incorreta. O atributo id deveria ser anotado com `@EmbeddedId` ao invés de `@Embedded`.
