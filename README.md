@@ -700,3 +700,12 @@ public class UsuarioId implements Serializable {
 ```
 Por qual motivo o mapeamento anterior está incorreto?  
 `R:` O atributo id foi mapeado de maneira incorreta. O atributo id deveria ser anotado com `@EmbeddedId` ao invés de `@Embedded`.
+
+### Aula 05.07 - Faça como eu fiz
+
+### Aula 05.08 - Projeto final do curso
+
+### Aula 05.09 - O que aprendemos?
+- A utilizar as anotações `@Embeddable` e `@Embedded` para organizar o código de uma entidade;
+- A realizar herança entre entidades com as estratégias `SINGLE_TABLE` e `JOINED`;
+- Como mapear uma chave composta com a anotação `@EmbeddedId`.
