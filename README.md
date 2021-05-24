@@ -619,3 +619,58 @@ public class PessoaJuridica extends Pessoa {
 ```
 Por qual motivo o mapeamento está incorreto?  
 `R:` A anotação de herança está na classe errada. A anotação `@Inheritance` deveria ser adicionada apenas na classe base.
+
+### Aula 05.05 - Mapeamento de chaves compostas
+- Há casos em que a chave primária de uma entidade é composta, ou seja, composta de duas propriedades. Para isso devemos criar uma nova classe e anotá-la com `@Embeddable` e implementar `Serializable`. Exemplo:
+```java
+@Embeddable
+public class CategoriaId implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	private String tipo;
+	private String nome;
+
+	public CategoriaId() {
+		
+	}
+
+	public CategoriaId(String tipo, String nome) {
+		this.tipo = tipo;
+		this.nome = nome;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+}
+```
+
+- Adicionar a anotação `@EmbeddedId` na propriedade de uma classe que utiliza chave composta. 
+
+```java
+@Entity
+@Table(name = "categorias")
+public class Categoria {
+	
+	@EmbeddedId
+	private CategoriaId id;
+	
+	public Categoria() {
+
+	}
+	public Categoria(String nome) {
+		this.id = new CategoriaId("xpto", nome);
+	}
+
+	public String getNome() {
+		return this.id.getNome();
+	}
+
+}
+```
