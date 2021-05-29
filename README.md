@@ -22,7 +22,7 @@ Conteúdo:
 - Outros tópicos (herança, chave composta, etc.)
 
 ### Aula 01.02 - Projeto inicial do treinamento
-- [Projeto inicial](./projeto_inicial)
+- [Projeto inicial](https://github.com/my-study-area/curso-alura-java-jpa-avancado/tree/aba87e1b9dee18ad40d7d609cc4318bee93add6d)
 
 ### Aula 01.03 - Mapeando novas entidades
 ![Tabela de pedidos e cliente](./tabela_pedidos_cliente.png)
