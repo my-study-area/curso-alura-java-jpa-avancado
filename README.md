@@ -61,6 +61,69 @@ public class Pedido {
 
 ### Aula 01.04 - Relacionamentos many-to-many
 ![Tabela itens de pedidos](./tabela_itens_pedido.png)
+```java
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private BigDecimal valorTotal;
+	private LocalDate data = LocalDate.now();
+
+	@ManyToOne
+	private Cliente cliente;
+	
+	@OneToMany
+	private List<ItemPedido> itens;
+
+  // getters, setters e construtores
+
+}
+```
+
+```java
+@Entity
+@Table(name = "produtos")
+public class Produto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private String descricao;
+	private BigDecimal preco;
+	private LocalDate dataCadastro = LocalDate.now();
+	
+  // getters, setters e construtores
+
+}
+```
+
+```java
+@Entity
+@Table(name = "itens_pedido")
+public class ItemPedido {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private BigDecimal precoUnitario;
+
+	private int quantidade;
+
+	@ManyToOne
+	private Pedido pedido;
+
+	@ManyToOne
+	private Produto produto;
+
+  // getters, setters e construtores
+
+}
+```
 
 ### Aula 01.05 - Relacionamentos bidirecionais
 - Ao criar um relacionamento muitos para muitos não podemos esquecer de anotar com `@OneToMany(mappedBy = "pedido")`, no lado  inverso, para impedir a criação de uma tabela desnecessária.
