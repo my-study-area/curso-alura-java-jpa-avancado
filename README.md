@@ -26,6 +26,38 @@ Conteúdo:
 
 ### Aula 01.03 - Mapeando novas entidades
 ![Tabela de pedidos e cliente](./tabela_pedidos_cliente.png)
+```java
+@Entity
+@Table(name = "clientes")
+public class Cliente {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private String cpf;
+
+  // getters, setters e construtores
+}
+```
+```java
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private BigDecimal valorTotal;
+	private LocalDate data = LocalDate.now();
+
+	@ManyToOne
+	private Cliente cliente;
+
+  // getters, setters e construtores
+
+}
+```
 
 ### Aula 01.04 - Relacionamentos many-to-many
 ![Tabela itens de pedidos](./tabela_itens_pedido.png)
